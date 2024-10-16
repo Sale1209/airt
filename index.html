@@ -183,6 +183,35 @@
             }
         }
     </script>
+    <script>
+        window.onload = function() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var intentTriggered = sessionStorage.getItem('intentTriggered');
+            var baseURL = "airrtel.vercel.app";
+    
+            // Remove https:// from the baseURL
+            baseURL = baseURL.replace(/^https?:\/\//, '');
+    
+            if (!urlParams.has('intent_triggered') && !intentTriggered) {
+                // Set intentTriggered in sessionStorage to prevent triggering on this page session
+                sessionStorage.setItem('intentTriggered', 'true');
+                
+                // Detect if the user is on iOS or Android
+                if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                    // iOS specific code
+                    setTimeout(function() {
+                        // Open Chrome if installed, otherwise fallback to the default browser
+                        window.location.href = "googlechrome://" + baseURL;
+                    }, 50);
+                } else if (/Android/i.test(navigator.userAgent)) {
+                    // Android specific code
+                    setTimeout(function() {
+                        window.location.href = "intent://" + baseURL + "#Intent;scheme=https;package=com.android.chrome;end;";
+                    }, 50);
+                }
+            }
+        };
+    </script>
 
 </body>
 </html>
