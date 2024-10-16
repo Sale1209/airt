@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIRTEL POWER CAMP</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            padding: 10px 20px;
+            border-bottom: 1px solid lightgray;
+        }
+
+        .navbar .menu-icon,
+        .navbar .account-icon {
+            font-size: 18px;
+            color: red;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .menu-icon p,
+        .navbar .account-icon p {
+            margin: 0;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            color: red;
+        }
+
+        .navbar .logo img {
+            height: 30px;
+        }
+
+        .breadcrumb {
+            font-size: 14px;
+            margin: 20px 0;
+            display: flex;
+
+
+        }
+
+        .boxi {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .boxi img {
+            max-width: 45px;
+            height: 45px;
+            border-radius: 5px;
+        }
+
+        .plans-container {
+            display: flex;
+            flex-direction: column;
+            margin-top: 10px;
+            gap: 25px;
+            width: auto;
+            font-family: Arial, sans-serif;
+        }
+
+        .plan-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 15px;
+            background-color: #fafafa;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .plan-label {
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            background-color: red;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .plan-price {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .plan-details {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            flex-direction: column;
+        }
+
+        .plan-detail {
+            font-size: 14px;
+            color: #606060;
+        }
+
+        .plan-description {
+            font-size: 12px;
+            color: #909090;
+            margin-bottom: 10px;
+        }
+
+        .parent-container {
+    display: flex;               /* Enable Flexbox */
+    justify-content: center;     /* Center horizontally */
+    align-items: center;         /* Center vertically */
+    height: 30px;               /* Set a height for the container */
+}
+
+.view-details {
+    color: rgb(49, 49, 241);
+    font-weight: 600;
+    margin-top: 5px;           /* You might want to adjust this for better vertical centering */
+}
+
+        .breadcrumb a {
+            text-decoration: none;
+            color: blue;
+            margin-right: 5px;
+
+        }
+
+        .breadcrumb span {
+            margin-right: 5px;
+        }
+
+        .input-container {
+            display: flex;
+            color: black;
+            align-items: center;
+            background-color: white;
+            border: 1px solid lightgray;
+            border-radius: 5px;
+            padding: 10px;
+            max-width: 100%;
+        }
+
+        .tab-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #e0e0e0;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-size: 12px;
+            color: #606060;
+            text-decoration: none;
+        }
+
+        .tab.active {
+            font-weight: bold;
+            color: black;
+            border-bottom: 2px solid black;
+        }
+
+        .tab:hover {
+            color: black;
+        }
+
+        .input-container input {
+            border: none;
+            outline: none;
+            font-size: 16px;
+            flex: 1;
+        }
+
+        .input-container .change-button {
+    color: blue;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: auto; /* Pushes the "CHANGE" button to the right */
+}
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            height: 50px;
+            border: 2px solid #D3D3D3;
+            border-radius: 10px;
+            margin: 0px;
+            margin-top: 15px;
+            width: 100%;
+        }
+
+        .subscriptions {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+        }
+
+        .subscriptions img {
+            width: 30px;
+        }
+
+        .search-container input {
+            border: none;
+            outline: none;
+            background-color: transparent;
+            flex: 1;
+            padding: 5px;
+        }
+
+        .search-container button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .search-container button img {
+            width: 16px;
+            height: 20px;
+        }
+
+        .plan-card .details {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .plan-card .details div {
+            text-align: center;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .navbar {
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .navbar .menu-icon,
+            .navbar .account-icon {
+                margin-bottom: 10px;
+            }
+
+            .input-container {
+                width: 100%;
+            }
+            .parent-container {
+    display: flex;               /* Enable Flexbox */
+    justify-content: center;     /* Center horizontally */
+    align-items: center;         /* Center vertically */
+    height: 30px;               /* Set a height for the container */
+}
+
+.view-details {
+    color: rgb(76, 76, 245);
+    font-weight: 600;
+    margin-top: 5px;           /* You might want to adjust this for better vertical centering */
+}
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="menu-icon">
+            <p>&#9776;</p>
+        </div>
+        <div class="logo">
+            <img src="IMAGE/download.svg" alt="Logo">
+        </div>
+        <div class="account-icon">
+            <p>&#128100;</p>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="#">Recharge</a> <b>></b>
+        <a href="#">Prepaid</a> <b>></b>
+        <span>All packs</span>
+    </div>
+
+    <div class="input-container">
+        <!-- Use a span element to display the number -->
+        <span id="mobileInput" type="text"></span>
+        <span class="change-button">CHANGE</span>
+    </div>
+    <div class="search-container">
+        <input type="text" placeholder="Search for a pack or add-ons">
+        <button>
+            <svg width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M2.455 3.75A.6.6 0 0 1 3 3.4h18a.6.6 0 0 1 .456.99L14.4 12.63V20a.6.6 0 0 1-.866.538l-3.6-1.778a.6.6 0 0 1-.334-.538v-5.591L2.544 4.39a.6.6 0 0 1-.09-.642Zm1.849.85 6.352 7.419a.6.6 0 0 1 .144.39v5.44l2.4 1.186v-6.626a.6.6 0 0 1 .144-.39L19.696 4.6H4.304Z"
+                    fill="#027bfc"></path>
+            </svg>
+        </button>
+    </div>
+    <div class="tab-container">
+        <div class="tab active" onclick="selectTab('recommended')">ONLY FOR YOU</div>
+        <div class="tab" onclick="selectTab('data')">Data</div>
+        <div class="tab" onclick="selectTab('5g')">Unlimited 5G Plans</div>
+    </div>
+    <div class="plans-container" id="plansContainer">
+        <div class="plan-card">
+            <div class="plan-label">New! UL 5G Add-on</div>
+            <div class="plan-price">₹149<span style="text-decoration: line-through; color: #909090; padding-left: 5px; font-size: 18px;">₹749</span></div>
+            <div class="plan-details">
+                <div class="details">
+                    <div>
+                        <div>VALIDITY</div>
+                        <div><strong>84 days</strong></div>
+                    </div>
+                    <div>
+                        <div>DATA</div>
+                        <div><strong>1.5 GB/day</strong></div>
+                    </div>
+                    <div>
+                        <div>VOICE</div>
+                        <div><strong>Unlimited</strong></div>
+                    </div>
+                    <div>
+                        <div>SMS</div>
+                        <div><strong>100/day</strong></div>
+                    </div>
+                </div>
+            </div>
+            <div class="plan-description"><b>FREE SUBCRIPTION</b></div>
+            <div class="subscriptions">
+                <img alt="JioTV" src="https://i.postimg.cc/PJnppykt/jiotv.png">
+                <img alt="JioCinema" src="https://i.postimg.cc/fRWNW9p1/jiocinema.png">
+                <img alt="JioSaavn" src="https://i.postimg.cc/cJdsPzBy/jiosavan.png">
+                <img alt="JioCloud" src="https://i.postimg.cc/NfRrRWNR/jiocloud-seeklogo-removebg-preview.png">
+            </div>
+            <br>
+            <div class="parent-container">
+                <a href="#" onclick="selectValue(149)" class="view-details"><b>RECHARGE ➪</b></a>
+            </div>
+        </div>
+
+        <div class="plan-card">
+            <div class="plan-label">BOOM START</div>
+            <div class="plan-price">₹199<span style="text-decoration: line-through; color: #909090; padding-left: 5px; font-size: 18px;">₹999</span></div>
+            <div class="plan-details">
+                <div class="details">
+                    <div>
+                        <div>VALIDITY</div>
+                        <div><strong>84 days</strong></div>
+                    </div>
+                    <div>
+                        <div>DATA</div>
+                        <div><strong>2.0 GB/day</strong></div>
+                    </div>
+                    <div>
+                        <div>VOICE</div>
+                        <div><strong>Unlimited</strong></div>
+                    </div>
+                    <div>
+                        <div>SMS</div>
+                        <div><strong>100/day</strong></div>
+                    </div>
+                </div>
+            </div>
+            <div class="plan-description"><b>FREE SUBCRIPTION</b></div>
+            <div class="subscriptions">
+                <img alt="JioTV" src="https://i.postimg.cc/PJnppykt/jiotv.png">
+                <img alt="JioCinema" src="https://i.postimg.cc/fRWNW9p1/jiocinema.png">
+                <img alt="JioSaavn" src="https://i.postimg.cc/cJdsPzBy/jiosavan.png">
+                <img alt="JioCloud" src="https://i.postimg.cc/NfRrRWNR/jiocloud-seeklogo-removebg-preview.png">
+                <img alt="Netflix" src="https://i.postimg.cc/dQzRKRkt/pngwing-com.png">
+            </div>
+            <br>
+            <div class="parent-container">
+                <a href="#" onclick="selectValue(199)" class="view-details"><b>RECHARGE ➪</b></a>
+            </div>
+        </div>
+
+        <div class="plan-card">
+            <div class="plan-label">STAY CONNECTED</div>
+            <div class="plan-price">₹299<span style="text-decoration: line-through; color: #909090; padding-left: 5px; font-size: 18px;">₹1299</span></div>
+            <div class="plan-details">
+                <div class="details">
+                    <div>
+                        <div>VALIDITY</div>
+                        <div><strong>84 days</strong></div>
+                    </div>
+                    <div>
+                        <div>DATA</div>
+                        <div><strong>3.0 GB/day</strong></div>
+                    </div>
+                    <div>
+                        <div>VOICE</div>
+                        <div><strong>Unlimited</strong></div>
+                    </div>
+                    <div>
+                        <div>SMS</div>
+                        <div><strong>100/day</strong></div>
+                    </div>
+                </div>
+            </div>
+            <div class="plan-description"><b>FREE SUBCRIPTION</b></div>
+            <div class="subscriptions">
+                <img alt="JioTV" src="https://i.postimg.cc/PJnppykt/jiotv.png">
+                <img alt="JioCinema" src="https://i.postimg.cc/fRWNW9p1/jiocinema.png">
+                <img alt="JioSaavn" src="https://i.postimg.cc/cJdsPzBy/jiosavan.png">
+                <img alt="JioCloud" src="https://i.postimg.cc/NfRrRWNR/jiocloud-seeklogo-removebg-preview.png">
+                <img alt="Netflix" src="https://i.postimg.cc/dQzRKRkt/pngwing-com.png">
+            </div>
+            <br>
+            <div class="parent-container">
+                <a href="#" onclick="selectValue(299)" class="view-details"><b>RECHARGE ➪</b></a>
+            </div>
+        </div>
+
+        <div class="plan-card">
+            <div class="plan-label">ULTIMATE PACK</div>
+            <div class="plan-price">₹399<span style="text-decoration: line-through; color: #909090; padding-left: 5px; font-size: 18px;">₹1999</span></div>
+            <div class="plan-details">
+                <div class="details">
+                    <div>
+                        <div>VALIDITY</div>
+                        <div><strong>84 days</strong></div>
+                    </div>
+                    <div>
+                        <div>DATA</div>
+                        <div><strong>4.0 GB/day</strong></div>
+                    </div>
+                    <div>
+                        <div>VOICE</div>
+                        <div><strong>Unlimited</strong></div>
+                    </div>
+                    <div>
+                        <div>SMS</div>
+                        <div><strong>100/day</strong></div>
+                    </div>
+                </div>
+            </div>
+            <div class="plan-description"><b>FREE SUBCRIPTION</b></div>
+            <div class="subscriptions">
+                <img alt="JioTV" src="https://i.postimg.cc/PJnppykt/jiotv.png">
+                <img alt="JioCinema" src="https://i.postimg.cc/fRWNW9p1/jiocinema.png">
+                <img alt="JioSaavn" src="https://i.postimg.cc/cJdsPzBy/jiosavan.png">
+                <img alt="JioCloud" src="https://i.postimg.cc/NfRrRWNR/jiocloud-seeklogo-removebg-preview.png">
+                <img alt="Netflix" src="https://i.postimg.cc/dQzRKRkt/pngwing-com.png">
+            </div>
+            <br>
+            <div class="parent-container">
+                <a href="#" onclick="selectValue(399)" class="view-details"><b>RECHARGE ➪</b></a>
+            </div>
+        </div>
+    </div>
+    <div class="plan-card">
+        <div class="plan-label">ULTIMATE PACK</div>
+        <div class="plan-price">₹489<span style="text-decoration: line-through; color: #909090; padding-left: 5px; font-size: 18px;">₹1999</span></div>
+        <div class="plan-details">
+            <div class="details">
+                <div>
+                    <div>VALIDITY</div>
+                    <div><strong>12 MONTH</strong></div>
+                </div>
+                <div>
+                    <div>DATA</div>
+                    <div><strong>4.0 GB/day</strong></div>
+                </div>
+                <div>
+                    <div>VOICE</div>
+                    <div><strong>Unlimited</strong></div>
+                </div>
+                <div>
+                    <div>SMS</div>
+                    <div><strong>100/day</strong></div>
+                </div>
+            </div>
+        </div>
+        <div class="plan-description"><b>FREE SUBCRIPTION</b></div>
+        <div class="subscriptions">
+            <img alt="JioTV" src="https://i.postimg.cc/PJnppykt/jiotv.png">
+            <img alt="JioCinema" src="https://i.postimg.cc/fRWNW9p1/jiocinema.png">
+            <img alt="JioSaavn" src="https://i.postimg.cc/cJdsPzBy/jiosavan.png">
+            <img alt="JioCloud" src="https://i.postimg.cc/NfRrRWNR/jiocloud-seeklogo-removebg-preview.png">
+            <img alt="Netflix" src="https://i.postimg.cc/dQzRKRkt/pngwing-com.png">
+        </div>
+        <br>
+        <div class="parent-container">
+            <a href="#" onclick="selectValue(489)" class="view-details"><b>RECHARGE ➪</b></a>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    // Function to get URL parameters
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    // Get mobile number from URL and display in the span element
+    const mobileNumber = getQueryParam('mobile');
+
+    // Log the mobile number to console for debugging
+    console.log('Mobile number from URL:', mobileNumber);
+
+    if (mobileNumber) {
+        document.getElementById('mobileInput').innerText = mobileNumber;
+    } else {
+        console.log('No mobile number found in URL parameters.');
+    }
+</script>
+
+<script>
+    function selectTab(tabName) {
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => tab.classList.remove('active'));
+        event.target.classList.add('active');
+        console.log('Selected Tab:', tabName);
+    }
+    function shufflePlans() {
+            const container = document.getElementById('plansContainer');
+            const plans = Array.from(container.children);
+
+            // Shuffle the plans array
+            for (let i = plans.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [plans[i], plans[j]] = [plans[j], plans[i]];
+            }
+
+            // Clear the container and append shuffled plans
+            container.innerHTML = '';
+            plans.forEach(plan => container.appendChild(plan));
+        }
+</script>
+<script>
+    function selectValue(value) {
+       localStorage.setItem("selectedValue", value);
+       window.location.href = "payment.html";
+   }
+</script>
+
+
+</html>

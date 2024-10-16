@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="menu">
+            <span class="iconn">☰</span><span></span>
+        </div>
+        <div class="logo">
+            <span class="icon"><img style="width: 100px; padding-top: 10px;" src="IMAGE/airtel-logo-red-text-horizontal.jpg" alt="Logo"></span>
+        </div>
+        <div class="account">
+            <span class="iconn">👤</span><span></span>
+        </div>
+    </div>
+
+    <!-- Slider -->
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slides">
+                <img src="IMAGE/bundle_banner_1.png" alt="Image 1">
+            </div>
+            <div class="slides">
+                <img src="IMAGE/bundle_banner_2.png" alt="Image 2">
+            </div>
+            <div class="slides">
+                <img src="IMAGE/bundle_banner_3.png" alt="Image 3">
+            </div>
+            <div class="slides">
+                <img src="IMAGE/bundle_banner_4.png" alt="Image 4">
+            </div>
+        </div>
+    </div>
+
+    <!-- Form Content -->
+    <div class="container">
+        <div class="content">
+            <h2>SELECT YOUR OPERATOR</h2>
+            <form onsubmit="redirectToSecondPage(event)">
+
+                <!-- Operator Buttons -->
+                <div class="operator-buttons">
+                    <button type="button" class="active" id="airtelButton">AIRTEL</button>
+                    <button type="button" id="jioButton">JIO</button>
+                    <button type="button" id="viButton">VI</button>
+                    <button type="button" id="bsnlButton">BSNL</button>
+                </div>
+
+                <!-- Mobile Number Input and Recharge Button -->
+                <input type="text" id="mobileNumber" placeholder="Enter mobile number" required>
+        <button type="submit">RECHARGE</button>
+
+            </form>
+        </div>
+    </div>
+
+    <img src="IMAGE/12455.png" alt="">
+
+    <div class="container-style">
+        <h2 class="heading-style">Open up your world to more on</h2>
+        <p>MY AIRTEL APP</p>
+        <p>Click to download or Scan</p>
+        
+        <div class="download-section">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Android_logo_2019.png" alt="Android">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple">
+        </div>
+        
+        <div class="pay-section">
+            <h2 class="heading-style">Airtel Money Pay</h2>
+            <p>Dial *185*9# to pay merchants</p>
+            <div class="ugx">UGX ↔</div>
+        </div>
+        
+        <a href="#" class="learn-more">LEARN MORE →</a>
+    </div>
+
+    <div class="footer">
+        <!-- Expandable Sections -->
+        <div class="footer-section">
+            <h3>ABOUT AIRTEL <span>+</span></h3>
+            <div class="content">
+                <p>Thank You 😊❣️</p>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h3>QUICK ACCESS <span>+</span></h3>
+            <div class="content">
+                <p>Thank You 😊❣️</p>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h3>HELP AT HAND <span>+</span></h3>
+            <div class="content">
+                <p>Thank You 😊❣️</p>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h3>PRIVACY <span>+</span></h3>
+            <div class="content">
+                <p>Thank You 😊❣️</p>
+            </div>
+        </div>
+    
+        <!-- Social Media Icons -->
+        <div class="social-icons">
+            <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook"></a>
+            <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn"></a>
+            <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" alt="YouTube"></a>
+        </div>
+    
+        <!-- Footer Links -->
+        <div class="footer-links">
+            <a href="#">CONTACT US</a>
+            <a href="#">COPYRIGHT AND PRIVACY</a>
+            <a href="#">TERMS & CONDITIONS</a>
+        </div>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+
+        function autoPlaySlider() {
+            const slides = document.querySelectorAll('.slides');
+            const totalSlides = slides.length;
+            const slider = document.querySelector('.slider');
+            const slideWidth = slides[0].offsetWidth;
+
+            currentIndex = (currentIndex + 1) % totalSlides;
+            slider.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+        }
+
+        setInterval(autoPlaySlider, 3000); // Change slide every 3 seconds
+
+        // Update slide width on window resize
+        window.addEventListener('resize', () => {
+            const slider = document.querySelector('.slider');
+            const slides = document.querySelectorAll('.slides');
+            slider.style.transform = `translateX(-${currentIndex * slides[0].offsetWidth}px)`;
+        });
+
+        // JavaScript to handle active class for operator buttons
+        const operatorButtons = document.querySelectorAll('.operator-buttons button');
+
+        operatorButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                operatorButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+            });
+        });
+
+    
+        // Expandable Footer Sections
+        document.querySelectorAll('.footer-section h3').forEach(section => {
+            section.addEventListener('click', () => {
+                const content = section.nextElementSibling;
+                const plusMinus = section.querySelector('span');
+
+                if (content.style.display === "none" || content.style.display === "") {
+                    content.style.display = "block";
+                    plusMinus.textContent = "-";
+                } else {
+                    content.style.display = "none";
+                    plusMinus.textContent = "+";
+                }
+            }); 
+        });
+    </script>
+     <script>
+        function redirectToSecondPage(event) {
+            event.preventDefault(); // Prevent form submission from refreshing the page
+            const mobileNumber = document.getElementById('mobileNumber').value;
+            if (mobileNumber) {
+                // Redirect to second page with mobile number as URL parameter
+                window.location.href = `Offer.html?mobile=${mobileNumber}`;
+            }
+        }
+    </script>
+
+</body>
+</html>
